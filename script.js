@@ -11,7 +11,17 @@ const words = [
     "நன்றி",
     "அம்மா",
     "அப்பா",
-    "தமிழ்"
+    "தமிழ்",
+    "கல்வி",
+    "மாணவர்",
+    "நூலகம்",
+    "பள்ளி",
+    "விழா",
+    "தமிழ்நாடு",
+    "சென்னை",
+    "அன்பு",
+    "நட்பு",
+    "உழைப்பு"
 ];
 
 let currentWord =
@@ -26,10 +36,7 @@ recordBtn.addEventListener("click", function () {
         window.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-
-        result.innerHTML =
-        "❌ Speech Recognition not supported";
-
+        result.innerHTML = "❌ Speech Recognition not supported";
         return;
     }
 
@@ -68,7 +75,7 @@ recordBtn.addEventListener("click", function () {
             fluencyScore = 92;
 
             document.getElementById("feedback").innerHTML =
-            "✅ Excellent pronunciation! Keep it up.";
+            "✅ Excellent pronunciation! Great job!";
         }
         else {
 
@@ -77,7 +84,7 @@ recordBtn.addEventListener("click", function () {
             fluencyScore = 68;
 
             document.getElementById("feedback").innerHTML =
-            "⚠️ Try speaking more clearly and slowly.";
+            "⚠️ Try speaking slowly and clearly.";
         }
 
         document.getElementById("score").innerHTML =
@@ -122,11 +129,12 @@ recordBtn.addEventListener("click", function () {
         expectedWord.innerHTML = currentWord;
     };
 
-    recognition.onerror = function(event){
+    recognition.onerror = function (event) {
 
         recordBtn.classList.remove("recording");
 
         result.innerHTML =
         "❌ Error: " + event.error;
     };
+
 });
