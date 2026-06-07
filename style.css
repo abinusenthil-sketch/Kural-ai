@@ -1,141 +1,191 @@
-<!DOCTYPE html>
-<html lang="en">
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kural AI</title>
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    min-height:100vh;
+    padding:30px;
+}
 
-    <link rel="stylesheet" href="style.css">
-</head>
+.container{
+    max-width:900px;
+    margin:auto;
+}
 
-<body>
+.hero{
+    text-align:center;
+    color:white;
+    margin-bottom:25px;
+}
 
-    <div class="container">
+.hero h1{
+    font-size:3rem;
+    margin-bottom:10px;
+}
 
-        <div class="hero">
-            <h1>🎤 Kural AI</h1>
+.hero h2{
+    margin-bottom:10px;
+    font-weight:500;
+}
 
-            <h2>AI-Powered Tamil Speech & Accent Mentor</h2>
+.desc{
+    font-size:1rem;
+    opacity:0.95;
+}
 
-            <p class="desc">
-                Improve your Tamil pronunciation using speech recognition,
-                AI feedback and performance tracking.
-            </p>
-        </div>
+.card{
+    background:rgba(255,255,255,0.95);
+    backdrop-filter:blur(10px);
+    padding:25px;
+    margin-bottom:20px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
 
-        <!-- Practice Section -->
+.card:hover{
+    transform:translateY(-4px);
+}
 
-        <div class="card">
+.card h3{
+    color:#0077cc;
+    margin-bottom:15px;
+}
 
-            <h3>📖 Practice Word</h3>
+.expected{
+    font-size:28px;
+    font-weight:bold;
+    color:#333;
+    margin-bottom:15px;
+}
 
-            <p class="expected">
-                <span id="expectedWord"></span>
-            </p>
+button{
+    background:#0077cc;
+    color:white;
+    border:none;
+    padding:14px 28px;
+    font-size:18px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.3s;
+}
 
-            <button id="recordBtn">
-                🎤 Start Recording
-            </button>
+button:hover{
+    background:#005fa3;
+    transform:scale(1.05);
+}
 
-            <p id="result"></p>
+.recording{
+    animation:pulse 1s infinite;
+}
 
-        </div>
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+    }
 
-        <!-- AI Analysis -->
+    50%{
+        transform:scale(1.1);
+    }
 
-        <div class="card">
+    100%{
+        transform:scale(1);
+    }
+}
 
-            <h3>🤖 AI Analysis</h3>
+#result{
+    margin-top:15px;
+    font-size:18px;
+    font-weight:600;
+}
 
-            <div class="score-grid">
+.score-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+    margin-bottom:15px;
+}
 
-                <div class="score-card">
-                    <h4>Pronunciation</h4>
-                    <p id="score">0%</p>
-                </div>
+.score-card{
+    background:#f4f8ff;
+    padding:15px;
+    border-radius:12px;
+    text-align:center;
+}
 
-                <div class="score-card">
-                    <h4>Accent Match</h4>
-                    <p id="accentScore">0%</p>
-                </div>
+.score-card h4{
+    color:#444;
+    margin-bottom:8px;
+}
 
-                <div class="score-card">
-                    <h4>Fluency</h4>
-                    <p id="fluencyScore">0%</p>
-                </div>
+.score-card p{
+    font-size:22px;
+    font-weight:bold;
+    color:#0077cc;
+}
 
-            </div>
+#feedback{
+    text-align:center;
+    font-size:16px;
+    font-weight:600;
+}
 
-            <p id="feedback">
-                Start speaking to receive AI feedback.
-            </p>
+.progress-container{
+    width:100%;
+    height:22px;
+    background:#ddd;
+    border-radius:30px;
+    overflow:hidden;
+    margin-top:15px;
+}
 
-        </div>
+#progressBar{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,#00c853,#64dd17);
+    transition:0.5s;
+}
 
-        <!-- Dashboard -->
+.team-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
 
-        <div class="card">
+.member{
+    background:#f4f8ff;
+    padding:15px;
+    border-radius:12px;
+    text-align:center;
+}
 
-            <h3>📊 Performance Dashboard</h3>
+.member h4{
+    color:#0077cc;
+    margin-bottom:8px;
+}
 
-            <p id="attempts">Total Attempts: 0</p>
+footer{
+    text-align:center;
+    color:white;
+    margin-top:25px;
+}
 
-            <p id="correct">Correct Attempts: 0</p>
+footer p{
+    margin-top:6px;
+}
 
-            <p id="accuracy">Accuracy: 0%</p>
+@media(max-width:768px){
 
-            <p id="level">Level: Beginner</p>
+    .hero h1{
+        font-size:2.2rem;
+    }
 
-            <div class="progress-container">
-                <div id="progressBar"></div>
-            </div>
+    button{
+        width:100%;
+    }
 
-        </div>
-
-        <!-- Team Section -->
-
-        <div class="card">
-
-            <h3>👨‍💻 Team Kural AI</h3>
-
-            <div class="team-grid">
-
-                <div class="member">
-                    <h4>Abi</h4>
-                    <p>Frontend & Project Lead</p>
-                </div>
-
-                <div class="member">
-                    <h4>Kamesh</h4>
-                    <p>Speech Recognition Integration</p>
-                </div>
-
-                <div class="member">
-                    <h4>Hem</h4>
-                    <p>Testing & Documentation</p>
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Footer -->
-
-        <footer>
-
-            <p>🚀 Developed by Team Kural AI</p>
-
-            <p>Abi • Kamesh • Hem</p>
-
-            <p>AI-Powered Tamil Speech Learning Platform</p>
-
-        </footer>
-
-    </div>
-
-    <script src="script.js"></script>
-
-</body>
-
-</html>
+}
