@@ -26,8 +26,10 @@ recordBtn.addEventListener("click", function () {
         window.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
+
         result.innerHTML =
-        "Speech Recognition not supported";
+        "❌ Speech Recognition not supported";
+
         return;
     }
 
@@ -35,11 +37,15 @@ recordBtn.addEventListener("click", function () {
 
     recognition.lang = "ta-IN";
 
+    recordBtn.classList.add("recording");
+
     result.innerHTML = "🎤 Listening...";
 
     recognition.start();
 
     recognition.onresult = function (event) {
+
+        recordBtn.classList.remove("recording");
 
         attempts++;
 
@@ -47,26 +53,41 @@ recordBtn.addEventListener("click", function () {
         event.results[0][0].transcript.toLowerCase();
 
         result.innerHTML =
-        "You said: " + text;
+        "🗣 You said: " + text;
+
+        let pronunciationScore = 60;
+        let accentScore = 65;
+        let fluencyScore = 70;
 
         if (text.includes(currentWord.toLowerCase())) {
 
             correct++;
 
-            score.innerHTML =
-            "✅ Pronunciation Score: 100%";
+            pronunciationScore = 100;
+            accentScore = 95;
+            fluencyScore = 92;
 
             document.getElementById("feedback").innerHTML =
-            "AI Feedback: Excellent Pronunciation!";
+            "✅ Excellent pronunciation! Keep it up.";
         }
         else {
 
-            score.innerHTML =
-            "⚠️ Pronunciation Score: 60%";
+            pronunciationScore = 60;
+            accentScore = 70;
+            fluencyScore = 68;
 
             document.getElementById("feedback").innerHTML =
-            "AI Feedback: Try speaking more clearly.";
+            "⚠️ Try speaking more clearly and slowly.";
         }
+
+        document.getElementById("score").innerHTML =
+        pronunciationScore + "%";
+
+        document.getElementById("accentScore").innerHTML =
+        accentScore + "%";
+
+        document.getElementById("fluencyScore").innerHTML =
+        fluencyScore + "%";
 
         document.getElementById("attempts").innerHTML =
         "Total Attempts: " + attempts;
@@ -86,10 +107,10 @@ recordBtn.addEventListener("click", function () {
         let level = "Beginner";
 
         if (accuracy >= 80) {
-            level = "Expert";
+            level = "🏆 Expert";
         }
         else if (accuracy >= 50) {
-            level = "Intermediate";
+            level = "⭐ Intermediate";
         }
 
         document.getElementById("level").innerHTML =
@@ -102,7 +123,10 @@ recordBtn.addEventListener("click", function () {
     };
 
     recognition.onerror = function(event){
+
+        recordBtn.classList.remove("recording");
+
         result.innerHTML =
-        "Error: " + event.error;
+        "❌ Error: " + event.error;
     };
 });
