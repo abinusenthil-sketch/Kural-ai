@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kural AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🎤 Kural AI</h1>
+
+    <h2>Smart Tamil Speech & Accent Mentor</h2>
+
+    <p class="desc">
+        Kural AI helps users improve Tamil pronunciation
+        through voice recognition and real-time feedback.
+    </p>
+
+    <p>
+        <b>Expected Word:</b>
+        <span id="expectedWord"></span>
+    </p>
+
+    <button id="recordBtn">Start Recording</button>
+
+    <p id="result"></p>
+
+    <p id="score"></p>
+
+    <p id="feedback"></p>
+
+    <hr>
+
+    <p id="attempts">Total Attempts: 0</p>
+
+    <p id="correct">Correct Attempts: 0</p>
+
+    <p id="accuracy">Accuracy: 0%</p>
+
+    <p id="level">Level: Beginner</p>
+
+    <div class="progress-container">
+        <div id="progressBar"></div>
+    </div>
+
+    <hr>
+
+    <p>
+        🚀 Developed by KuralX
+    </p>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
