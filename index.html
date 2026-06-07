@@ -1,164 +1,212 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kural AI</title><link rel="stylesheet" href="style.css">
+    <title>Kural AI</title>
 
-</head><body><div class="container">
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    <div class="hero">
+<body>
 
-        <h1>🎤 Kural AI</h1>
+    <div class="container">
 
-        <p class="version-badge">
-            Version 1.0 • AI Speech Learning Platform
-        </p>
+        <!-- Hero Section -->
 
-        <h2>AI-Powered Tamil Speech & Accent Mentor</h2>
+        <div class="hero">
 
-        <p class="tagline">
-            Preserving Tamil Pronunciation Through AI-Powered Learning
-        </p>
+            <h1>🎤 Kural AI</h1>
 
-        <p class="desc">
-            Improve your Tamil pronunciation using speech recognition,
-            AI feedback and performance tracking.
-        </p>
+            <p class="version-badge">
+                Version 1.0 • AI Speech Learning Platform
+            </p>
 
-    </div>
+            <h2>AI-Powered Tamil Speech & Accent Mentor</h2>
 
-    <div class="card">
+            <p class="tagline">
+                Preserving Tamil Pronunciation Through AI-Powered Learning
+            </p>
 
-        <h3>📖 Practice Word</h3>
+            <p class="desc">
+                Improve your Tamil pronunciation using speech recognition,
+                AI feedback and performance tracking.
+            </p>
 
-        <p class="expected">
-            <span id="expectedWord"></span>
-        </p>
+        </div>
 
-        <button id="recordBtn">
-            🎤 Start Recording
-        </button>
+        <!-- Practice Section -->
 
-        <p id="result"></p>
+        <div class="card">
 
-    </div>
+            <h3>📖 Practice Word</h3>
 
-    <div class="card">
+            <p class="expected">
+                <span id="expectedWord"></span>
+            </p>
 
-        <h3>🤖 AI Analysis</h3>
+            <button id="recordBtn">
+                🎤 Start Recording
+            </button>
 
-        <div class="score-grid">
+            <p id="result"></p>
 
-            <div class="score-card">
-                <h4>Pronunciation</h4>
-                <p id="score">0%</p>
+        </div>
+
+        <!-- Thirukkural Challenge -->
+
+        <div class="card">
+
+            <h3>📜 Thirukkural Challenge</h3>
+
+            <p class="expected">
+                அகர முதல எழுத்தெல்லாம் ஆதி
+                <br><br>
+                பகவன் முதற்றே உலகு
+            </p>
+
+            <button>
+                🎤 Read Thirukkural
+            </button>
+
+            <p style="margin-top:15px;font-weight:600;">
+                Practice classical Tamil pronunciation through Thirukkural.
+            </p>
+
+        </div>
+
+        <!-- AI Analysis -->
+
+        <div class="card">
+
+            <h3>🤖 AI Analysis</h3>
+
+            <div class="score-grid">
+
+                <div class="score-card">
+                    <h4>Pronunciation</h4>
+                    <p id="score">0%</p>
+                </div>
+
+                <div class="score-card">
+                    <h4>Accent Match</h4>
+                    <p id="accentScore">0%</p>
+                </div>
+
+                <div class="score-card">
+                    <h4>Fluency</h4>
+                    <p id="fluencyScore">0%</p>
+                </div>
+
             </div>
 
-            <div class="score-card">
-                <h4>Accent Match</h4>
-                <p id="accentScore">0%</p>
-            </div>
+            <p id="feedback">
+                Start speaking to receive AI feedback.
+            </p>
 
-            <div class="score-card">
-                <h4>Fluency</h4>
-                <p id="fluencyScore">0%</p>
+        </div>
+
+        <!-- Dashboard -->
+
+        <div class="card">
+
+            <h3>📊 Performance Dashboard</h3>
+
+            <p id="attempts">Total Attempts: 0</p>
+
+            <p id="correct">Correct Attempts: 0</p>
+
+            <p id="accuracy">Accuracy: 0%</p>
+
+            <p id="level">Level: Beginner</p>
+
+            <div class="progress-container">
+                <div id="progressBar"></div>
             </div>
 
         </div>
 
-        <p id="feedback">
-            Start speaking to receive AI feedback.
-        </p>
+        <!-- Team Section -->
 
-    </div>
+        <div class="card">
 
-    <div class="card">
+            <h3>👨‍💻 Team Kural AI</h3>
 
-        <h3>📊 Performance Dashboard</h3>
+            <div class="team-grid">
 
-        <p id="attempts">Total Attempts: 0</p>
+                <div class="member">
+                    <h4>Abi</h4>
+                    <p>Frontend & Project Lead</p>
+                </div>
 
-        <p id="correct">Correct Attempts: 0</p>
+                <div class="member">
+                    <h4>Kamesh</h4>
+                    <p>Speech Recognition Integration</p>
+                </div>
 
-        <p id="accuracy">Accuracy: 0%</p>
+                <div class="member">
+                    <h4>Hem</h4>
+                    <p>Testing & Documentation</p>
+                </div>
 
-        <p id="level">Level: Beginner</p>
-
-        <div class="progress-container">
-            <div id="progressBar"></div>
-        </div>
-
-    </div>
-
-    <div class="card">
-
-        <h3>👨‍💻 Team Kural AI</h3>
-
-        <div class="team-grid">
-
-            <div class="member">
-                <h4>Abi</h4>
-                <p>Frontend & Project Lead</p>
-            </div>
-
-            <div class="member">
-                <h4>Kamesh</h4>
-                <p>Speech Recognition Integration</p>
-            </div>
-
-            <div class="member">
-                <h4>Hem</h4>
-                <p>Testing & Documentation</p>
             </div>
 
         </div>
 
-    </div>
+        <!-- Applications -->
 
-    <div class="card">
+        <div class="card">
 
-        <h3>🎯 Real-World Applications</h3>
+            <h3>🎯 Real-World Applications</h3>
 
-        <div class="team-grid">
+            <div class="team-grid">
 
-            <div class="member">
-                <h4>📚 Education</h4>
-                <p>Tamil language learning for students.</p>
-            </div>
+                <div class="member">
+                    <h4>📚 Education</h4>
+                    <p>Tamil language learning for students.</p>
+                </div>
 
-            <div class="member">
-                <h4>🗣 Accent Training</h4>
-                <p>Improve pronunciation and fluency.</p>
-            </div>
+                <div class="member">
+                    <h4>🗣 Accent Training</h4>
+                    <p>Improve pronunciation and fluency.</p>
+                </div>
 
-            <div class="member">
-                <h4>🏛 Cultural Preservation</h4>
-                <p>Promoting correct Tamil pronunciation.</p>
+                <div class="member">
+                    <h4>🏛 Cultural Preservation</h4>
+                    <p>Promoting correct Tamil pronunciation.</p>
+                </div>
+
             </div>
 
         </div>
 
+        <!-- GitHub Button -->
+
+        <a href="https://github.com/abinusenthil-sketch/Kural-ai"
+           target="_blank"
+           class="github-btn">
+            🔗 View Source Code
+        </a>
+
+        <!-- Footer -->
+
+        <footer>
+
+            <p>🚀 Developed by Team Kural AI</p>
+
+            <p>Abi • Kamesh • Hem</p>
+
+            <p>Department of Electronics and Communication Engineering</p>
+
+            <p>AI-Powered Tamil Speech Learning Platform</p>
+
+        </footer>
+
     </div>
 
-    <a href="https://github.com/abinusenthil-sketch/Kural-ai"
-       target="_blank"
-       class="github-btn">
-       🔗 View Source Code
-    </a>
+    <script src="script.js"></script>
 
-    <footer>
+</body>
 
-        <p>🚀 Developed by Team Kural AI</p>
-
-        <p>Abi • Kamesh • Hem</p>
-
-        <p>Department of Electronics and Communication Engineering</p>
-
-        <p>AI-Powered Tamil Speech Learning Platform</p>
-
-    </footer>
-
-</div>
-
-<script src="script.js"></script>
-
-</body></html>
+</html>
