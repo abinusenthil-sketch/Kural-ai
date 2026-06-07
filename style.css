@@ -60,3 +60,15 @@ button:hover{
     background:green;
     border-radius:10px;
 }
+.ai-feedback{
+    margin-top:20px;
+    padding:15px;
+    border-radius:12px;
+    background:#f5f7ff;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.ai-feedback h3{
+    color:#0077ff;
+    margin-bottom:10px;
+}
