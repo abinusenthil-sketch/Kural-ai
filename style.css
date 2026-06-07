@@ -1,74 +1,141 @@
-body{
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right,#4facfe,#00f2fe);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    margin:0;
-}
+<!DOCTYPE html>
+<html lang="en">
 
-.container{
-    background:white;
-    width:550px;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 0 20px rgba(0,0,0,0.2);
-    text-align:center;
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kural AI</title>
 
-h1{
-    color:#0077cc;
-}
+    <link rel="stylesheet" href="style.css">
+</head>
 
-button{
-    background:#0077cc;
-    color:white;
-    border:none;
-    padding:12px 25px;
-    font-size:18px;
-    border-radius:10px;
-    cursor:pointer;
-}
+<body>
 
-button:hover{
-    background:#005fa3;
-}
+    <div class="container">
 
-#result{
-    margin-top:20px;
-    font-size:20px;
-    font-weight:bold;
-}
+        <div class="hero">
+            <h1>🎤 Kural AI</h1>
 
-#score{
-    font-size:22px;
-    font-weight:bold;
-}
+            <h2>AI-Powered Tamil Speech & Accent Mentor</h2>
 
-.progress-container{
-    width:100%;
-    height:20px;
-    background:#ddd;
-    border-radius:10px;
-    margin-top:15px;
-}
+            <p class="desc">
+                Improve your Tamil pronunciation using speech recognition,
+                AI feedback and performance tracking.
+            </p>
+        </div>
 
-#progressBar{
-    width:0%;
-    height:20px;
-    background:green;
-    border-radius:10px;
-}
-.ai-feedback{
-    margin-top:20px;
-    padding:15px;
-    border-radius:12px;
-    background:#f5f7ff;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
+        <!-- Practice Section -->
 
-.ai-feedback h3{
-    color:#0077ff;
-    margin-bottom:10px;
-}
+        <div class="card">
+
+            <h3>📖 Practice Word</h3>
+
+            <p class="expected">
+                <span id="expectedWord"></span>
+            </p>
+
+            <button id="recordBtn">
+                🎤 Start Recording
+            </button>
+
+            <p id="result"></p>
+
+        </div>
+
+        <!-- AI Analysis -->
+
+        <div class="card">
+
+            <h3>🤖 AI Analysis</h3>
+
+            <div class="score-grid">
+
+                <div class="score-card">
+                    <h4>Pronunciation</h4>
+                    <p id="score">0%</p>
+                </div>
+
+                <div class="score-card">
+                    <h4>Accent Match</h4>
+                    <p id="accentScore">0%</p>
+                </div>
+
+                <div class="score-card">
+                    <h4>Fluency</h4>
+                    <p id="fluencyScore">0%</p>
+                </div>
+
+            </div>
+
+            <p id="feedback">
+                Start speaking to receive AI feedback.
+            </p>
+
+        </div>
+
+        <!-- Dashboard -->
+
+        <div class="card">
+
+            <h3>📊 Performance Dashboard</h3>
+
+            <p id="attempts">Total Attempts: 0</p>
+
+            <p id="correct">Correct Attempts: 0</p>
+
+            <p id="accuracy">Accuracy: 0%</p>
+
+            <p id="level">Level: Beginner</p>
+
+            <div class="progress-container">
+                <div id="progressBar"></div>
+            </div>
+
+        </div>
+
+        <!-- Team Section -->
+
+        <div class="card">
+
+            <h3>👨‍💻 Team Kural AI</h3>
+
+            <div class="team-grid">
+
+                <div class="member">
+                    <h4>Abi</h4>
+                    <p>Frontend & Project Lead</p>
+                </div>
+
+                <div class="member">
+                    <h4>Kamesh</h4>
+                    <p>Speech Recognition Integration</p>
+                </div>
+
+                <div class="member">
+                    <h4>Hem</h4>
+                    <p>Testing & Documentation</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+
+        <footer>
+
+            <p>🚀 Developed by Team Kural AI</p>
+
+            <p>Abi • Kamesh • Hem</p>
+
+            <p>AI-Powered Tamil Speech Learning Platform</p>
+
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
