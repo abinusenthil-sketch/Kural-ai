@@ -3,31 +3,64 @@
 // =========================
 
 const recordBtn = document.getElementById("recordBtn");
+const nextWordBtn = document.getElementById("nextWordBtn");
+
 const result = document.getElementById("result");
 const score = document.getElementById("score");
-const expectedWord = document.getElementById("expectedWord");
 
-const feedback = document.getElementById("feedback");
-const accentScoreEl = document.getElementById("accentScore");
-const fluencyScoreEl = document.getElementById("fluencyScore");
+const expectedWord =
+document.getElementById("expectedWord");
 
-const attemptsEl = document.getElementById("attempts");
-const correctEl = document.getElementById("correct");
-const accuracyEl = document.getElementById("accuracy");
-const progressBar = document.getElementById("progressBar");
-const levelEl = document.getElementById("level");
+const feedback =
+document.getElementById("feedback");
 
-const kuralBtn = document.getElementById("kuralBtn");
-const kuralResult = document.getElementById("kuralResult");
+const accentScoreEl =
+document.getElementById("accentScore");
+
+const fluencyScoreEl =
+document.getElementById("fluencyScore");
+
+const attemptsEl =
+document.getElementById("attempts");
+
+const correctEl =
+document.getElementById("correct");
+
+const accuracyEl =
+document.getElementById("accuracy");
+
+const progressBar =
+document.getElementById("progressBar");
+
+const levelEl =
+document.getElementById("level");
+
+const kuralText =
+document.getElementById("kuralText");
+
+const kuralNumber =
+document.getElementById("kuralNumber");
+
+const readKuralBtn =
+document.getElementById("readKuralBtn");
+
+const nextKuralBtn =
+document.getElementById("nextKuralBtn");
+
+const kuralResult =
+document.getElementById("kuralResult");
 
 // =========================
-// DATA
+// DASHBOARD DATA
 // =========================
 
 let attempts = 0;
 let correct = 0;
 
-// Tamil words
+// =========================
+// PRACTICE WORDS
+// =========================
+
 const words = [
 
 "வணக்கம்",
@@ -59,28 +92,65 @@ const words = [
 "பண்பாடு",
 "கலாச்சாரம்",
 "ஒற்றுமை",
-"அறிவியல்"
+"அறிவியல்",
+"உலகம்",
+"சிந்தனை",
+"கடமை",
+"நம்பிக்கை",
+"நட்பு",
+"வெற்றி",
+"உழைப்பு",
+"மனிதம்",
+"அன்பு",
+"வாழ்க்கை"
 
 ];
 
-// Thirukkural collection
+// =========================
+// THIRUKKURALS
+// =========================
+
 const kurals = [
 
-"அகர முதல எழுத்தெல்லாம் ஆதி பகவன் முதற்றே உலகு",
+{
+number:1,
+text:"அகர முதல எழுத்தெல்லாம் ஆதி பகவன் முதற்றே உலகு"
+},
 
-"கற்றதனால் ஆய பயனென்கொல் வாலறிவன் நற்றாள் தொழாஅர் எனின்",
+{
+number:2,
+text:"கற்றதனால் ஆய பயனென்கொல் வாலறிவன் நற்றாள் தொழாஅர் எனின்"
+},
 
-"மலர்மிசை ஏகினான் மாணடி சேர்ந்தார் நிலமிசை நீடுவாழ் வார்",
+{
+number:3,
+text:"மலர்மிசை ஏகினான் மாணடி சேர்ந்தார் நிலமிசை நீடுவாழ் வார்"
+},
 
-"வேண்டுதல் வேண்டாமை இலானடி சேர்ந்தார்க்கு யாண்டும் இடும்பை இல",
+{
+number:4,
+text:"வேண்டுதல் வேண்டாமை இலானடி சேர்ந்தார்க்கு யாண்டும் இடும்பை இல"
+},
 
-"இருள்சேர் இருவினையும் சேரா இறைவன் பொருள்சேர் புகழ்புரிந்தார் மாட்டு",
+{
+number:5,
+text:"இருள்சேர் இருவினையும் சேரா இறைவன் பொருள்சேர் புகழ்புரிந்தார் மாட்டு"
+},
 
-"ஒழுக்கம் விழுப்பம் தரலான் ஒழுக்கம் உயிரினும் ஓம்பப் படும்",
+{
+number:6,
+text:"ஒழுக்கம் விழுப்பம் தரலான் ஒழுக்கம் உயிரினும் ஓம்பப் படும்"
+},
 
-"தொட்டனைத் தூறும் மணற்கேணி மாந்தர்க்குக் கற்றனைத் தூறும் அறிவு",
+{
+number:7,
+text:"தொட்டனைத் தூறும் மணற்கேணி மாந்தர்க்குக் கற்றனைத் தூறும் அறிவு"
+},
 
-"எண்ணென்ப ஏனை எழுத்தென்ப இவ்விரண்டும் கண்ணென்ப வாழும் உயிர்க்கு"
+{
+number:8,
+text:"எண்ணென்ப ஏனை எழுத்தென்ப இவ்விரண்டும் கண்ணென்ப வாழும் உயிர்க்கு"
+}
 
 ];
 
@@ -91,37 +161,55 @@ const kurals = [
 let currentWord =
 words[Math.floor(Math.random() * words.length)];
 
-if(expectedWord){
-    expectedWord.innerHTML = currentWord;
+expectedWord.innerHTML =
+currentWord;
+
+// =========================
+// RANDOM KURAL
+// =========================
+
+let currentKural =
+kurals[Math.floor(Math.random() * kurals.length)];
+
+displayKural();
+
+// =========================
+// FUNCTIONS
+// =========================
+
+function displayKural(){
+
+    kuralNumber.innerHTML =
+    "Thirukkural #" + currentKural.number;
+
+    kuralText.innerHTML =
+    currentKural.text;
 }
 
-// =========================
-// SIMILARITY FUNCTION
-// =========================
-
-function similarity(a, b){
+function similarity(a,b){
 
     a = a.trim().toLowerCase();
     b = b.trim().toLowerCase();
 
     let matches = 0;
 
-    for(let i=0;i<Math.min(a.length,b.length);i++){
+    for(
+        let i=0;
+        i<Math.min(a.length,b.length);
+        i++
+    ){
 
         if(a[i] === b[i]){
             matches++;
         }
-
     }
 
     return Math.round(
-        (matches / Math.max(a.length,b.length)) * 100
+        (matches /
+        Math.max(a.length,b.length))
+        * 100
     );
 }
-
-// =========================
-// LEVEL FUNCTION
-// =========================
 
 function getLevel(acc){
 
@@ -133,11 +221,82 @@ function getLevel(acc){
     return "Starter";
 }
 
+function updateDashboard(){
+
+    let accuracy = attempts === 0
+    ? 0
+    : Math.round((correct / attempts) * 100);
+
+    attemptsEl.innerHTML =
+    attempts;
+
+    correctEl.innerHTML =
+    correct;
+
+    accuracyEl.innerHTML =
+    accuracy + "%";
+
+    levelEl.innerHTML =
+    getLevel(accuracy);
+
+    progressBar.style.width =
+    accuracy + "%";
+}
+
 // =========================
-// WORD PRACTICE
+// NEXT WORD
 // =========================
 
-if(recordBtn){
+nextWordBtn.addEventListener("click",()=>{
+
+    currentWord =
+    words[Math.floor(
+        Math.random() * words.length
+    )];
+
+    expectedWord.innerHTML =
+    currentWord;
+
+});
+
+// =========================
+// NEXT KURAL
+// =========================
+
+nextKuralBtn.addEventListener("click",()=>{
+
+    currentKural =
+    kurals[Math.floor(
+        Math.random() * kurals.length
+    )];
+
+    displayKural();
+
+    kuralResult.innerHTML = "";
+
+});
+
+// =========================
+// READ KURAL
+// =========================
+
+readKuralBtn.addEventListener("click",()=>{
+
+    const speech =
+    new SpeechSynthesisUtterance(
+        currentKural.text
+    );
+
+    speech.lang = "ta-IN";
+
+    speechSynthesis.cancel();
+    speechSynthesis.speak(speech);
+
+});
+
+// =========================
+// SPEECH RECOGNITION
+// =========================
 
 recordBtn.addEventListener("click",()=>{
 
@@ -153,7 +312,8 @@ recordBtn.addEventListener("click",()=>{
         return;
     }
 
-    const recognition = new SpeechRecognition();
+    const recognition =
+    new SpeechRecognition();
 
     recognition.lang = "ta-IN";
     recognition.interimResults = false;
@@ -165,35 +325,41 @@ recordBtn.addEventListener("click",()=>{
 
     recognition.start();
 
-    recognition.onresult = function(event){
+    recognition.onresult =
+    function(event){
 
-        recordBtn.classList.remove("recording");
+        recordBtn.classList.remove(
+            "recording"
+        );
 
         let text =
         event.results[0][0].transcript;
 
         let scoreVal =
-        similarity(text,currentWord);
+        similarity(
+            text,
+            currentWord
+        );
 
-        result.innerHTML =
-        "<b>You Said:</b> " + text;
+        let confidence =
+        Math.round(
+            (
+                event.results[0][0]
+                .confidence || 0.8
+            ) * 100
+        );
 
-        // Dynamic AI scores
         let accent =
-        Math.max(
-        0,
-        Math.min(
-        100,
-        scoreVal + Math.floor(Math.random()*8)-4
-        ));
+        Math.round(
+            scoreVal * 0.7 +
+            confidence * 0.3
+        );
 
         let fluency =
-        Math.max(
-        0,
-        Math.min(
-        100,
-        scoreVal + Math.floor(Math.random()*10)-5
-        ));
+        Math.round(
+            scoreVal * 0.8 +
+            confidence * 0.2
+        );
 
         score.innerHTML =
         scoreVal + "%";
@@ -204,171 +370,59 @@ recordBtn.addEventListener("click",()=>{
         fluencyScoreEl.innerHTML =
         fluency + "%";
 
+        result.innerHTML =
+        "<b>You Said:</b><br>" +
+        text;
+
         if(scoreVal >= 85){
 
             feedback.innerHTML =
-            "✅ Excellent Pronunciation";
+            "🌟 Excellent Pronunciation";
 
             correct++;
 
-        }else if(scoreVal >= 65){
+        }
+        else if(scoreVal >= 65){
 
             feedback.innerHTML =
             "👍 Good Attempt";
 
-        }else{
+        }
+        else{
 
             feedback.innerHTML =
-            "❌ Practice Again";
+            "📚 Needs More Practice";
 
         }
 
         attempts++;
 
-        let accuracy =
-        Math.round((correct/attempts)*100);
+        updateDashboard();
 
-        attemptsEl.innerHTML =
-        "Attempts: " + attempts;
-
-        correctEl.innerHTML =
-        "Correct: " + correct;
-
-        accuracyEl.innerHTML =
-        "Accuracy: " + accuracy + "%";
-
-        progressBar.style.width =
-        accuracy + "%";
-
-        levelEl.innerHTML =
-        "Level: " + getLevel(accuracy);
-
-        // New random word
         currentWord =
-        words[Math.floor(Math.random()*words.length)];
+        words[Math.floor(
+            Math.random()*words.length
+        )];
 
         expectedWord.innerHTML =
         currentWord;
     };
 
-    recognition.onerror = function(event){
+    recognition.onerror =
+    function(event){
 
-        recordBtn.classList.remove("recording");
+        recordBtn.classList.remove(
+            "recording"
+        );
 
-        if(event.error === "no-speech"){
-
-            result.innerHTML =
-            "⚠ No speech detected.";
-
-        }else{
-
-            result.innerHTML =
-            "Error: " + event.error;
-        }
-
-    };
-
-    recognition.onend = function(){
-
-        recordBtn.classList.remove("recording");
-
+        result.innerHTML =
+        "Error: " + event.error;
     };
 
 });
 
-}
-
 // =========================
-// THIRUKKURAL PRACTICE
+// INITIALIZE
 // =========================
 
-if(kuralBtn){
-
-kuralBtn.addEventListener("click",()=>{
-
-    const SpeechRecognition =
-    window.SpeechRecognition ||
-    window.webkitSpeechRecognition;
-
-    if(!SpeechRecognition){
-
-        kuralResult.innerHTML =
-        "Speech Recognition not supported.";
-
-        return;
-    }
-
-    const selectedKural =
-    kurals[
-    Math.floor(Math.random()*kurals.length)
-    ];
-
-    const recognition =
-    new SpeechRecognition();
-
-    recognition.lang = "ta-IN";
-
-    kuralResult.innerHTML =
-    "<b>Read This Kural:</b><br><br>" +
-    selectedKural +
-    "<br><br>🎤 Listening...";
-
-    recognition.start();
-
-    recognition.onresult = function(event){
-
-        let text =
-        event.results[0][0].transcript;
-
-        let scoreVal =
-        similarity(text,selectedKural);
-
-        let message = "";
-
-        if(scoreVal >= 85){
-
-            message =
-            "🌟 Excellent";
-
-        }else if(scoreVal >= 65){
-
-            message =
-            "👍 Good";
-
-        }else{
-
-            message =
-            "📚 Needs More Practice";
-        }
-
-        kuralResult.innerHTML =
-        "<b>Kural:</b><br>" +
-        selectedKural +
-        "<br><br>" +
-        "<b>You Said:</b><br>" +
-        text +
-        "<br><br>" +
-        "<b>Score:</b> " +
-        scoreVal +
-        "%<br>" +
-        message;
-    };
-
-    recognition.onerror = function(event){
-
-        if(event.error === "no-speech"){
-
-            kuralResult.innerHTML =
-            "⚠ No speech detected.";
-
-        }else{
-
-            kuralResult.innerHTML =
-            "Error: " + event.error;
-        }
-
-    };
-
-});
-
-}
+updateDashboard();
