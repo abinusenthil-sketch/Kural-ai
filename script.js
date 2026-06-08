@@ -1,68 +1,41 @@
-// =========================
+// ======================
 // ELEMENTS
-// =========================
+// ======================
 
+const expectedWord = document.getElementById("expectedWord");
 const recordBtn = document.getElementById("recordBtn");
 const nextWordBtn = document.getElementById("nextWordBtn");
 
 const result = document.getElementById("result");
 const score = document.getElementById("score");
+const accentScore = document.getElementById("accentScore");
+const fluencyScore = document.getElementById("fluencyScore");
+const feedback = document.getElementById("feedback");
 
-const expectedWord =
-document.getElementById("expectedWord");
+const attemptsEl = document.getElementById("attempts");
+const correctEl = document.getElementById("correct");
+const accuracyEl = document.getElementById("accuracy");
+const levelEl = document.getElementById("level");
+const progressBar = document.getElementById("progressBar");
 
-const feedback =
-document.getElementById("feedback");
+const kuralNumber = document.getElementById("kuralNumber");
+const kuralText = document.getElementById("kuralText");
+const readKuralBtn = document.getElementById("readKuralBtn");
+const nextKuralBtn = document.getElementById("nextKuralBtn");
+const kuralResult = document.getElementById("kuralResult");
 
-const accentScoreEl =
-document.getElementById("accentScore");
-
-const fluencyScoreEl =
-document.getElementById("fluencyScore");
-
-const attemptsEl =
-document.getElementById("attempts");
-
-const correctEl =
-document.getElementById("correct");
-
-const accuracyEl =
-document.getElementById("accuracy");
-
-const progressBar =
-document.getElementById("progressBar");
-
-const levelEl =
-document.getElementById("level");
-
-const kuralText =
-document.getElementById("kuralText");
-
-const kuralNumber =
-document.getElementById("kuralNumber");
-
-const readKuralBtn =
-document.getElementById("readKuralBtn");
-
-const nextKuralBtn =
-document.getElementById("nextKuralBtn");
-
-const kuralResult =
-document.getElementById("kuralResult");
-
-// =========================
-// DASHBOARD DATA
-// =========================
+// ======================
+// DASHBOARD
+// ======================
 
 let attempts = 0;
 let correct = 0;
 
-// =========================
-// PRACTICE WORDS
-// =========================
+// ======================
+// WORDS
+// ======================
 
 const words = [
-
 "வணக்கம்",
 "நன்றி",
 "தமிழ்",
@@ -92,23 +65,12 @@ const words = [
 "பண்பாடு",
 "கலாச்சாரம்",
 "ஒற்றுமை",
-"அறிவியல்",
-"உலகம்",
-"சிந்தனை",
-"கடமை",
-"நம்பிக்கை",
-"நட்பு",
-"வெற்றி",
-"உழைப்பு",
-"மனிதம்",
-"அன்பு",
-"வாழ்க்கை"
-
+"அறிவியல்"
 ];
 
-// =========================
+// ======================
 // THIRUKKURALS
-// =========================
+// ======================
 
 const kurals = [
 
@@ -140,289 +102,336 @@ text:"இருள்சேர் இருவினையும் சேரா
 {
 number:6,
 text:"ஒழுக்கம் விழுப்பம் தரலான் ஒழுக்கம் உயிரினும் ஓம்பப் படும்"
-},
-
-{
-number:7,
-text:"தொட்டனைத் தூறும் மணற்கேணி மாந்தர்க்குக் கற்றனைத் தூறும் அறிவு"
-},
-
-{
-number:8,
-text:"எண்ணென்ப ஏனை எழுத்தென்ப இவ்விரண்டும் கண்ணென்ப வாழும் உயிர்க்கு"
 }
 
 ];
 
-// =========================
-// RANDOM WORD
-// =========================
+// ======================
+// CURRENT VALUES
+// ======================
 
 let currentWord =
-words[Math.floor(Math.random() * words.length)];
+words[Math.floor(Math.random()*words.length)];
+
+let currentKural =
+kurals[Math.floor(Math.random()*kurals.length)];
+
+if(expectedWord){
+expectedWord.innerHTML = currentWord;
+}
+
+displayKural();
+
+// ======================
+// DISPLAY KURAL
+// ======================
+
+function displayKural(){
+
+if(kuralNumber){
+kuralNumber.innerHTML =
+"📜 Thirukkural #" +
+currentKural.number;
+}
+
+if(kuralText){
+kuralText.innerHTML =
+currentKural.text;
+}
+
+}
+
+// ======================
+// SIMILARITY
+// ======================
+
+function similarity(a,b){
+
+a = a.trim().toLowerCase();
+b = b.trim().toLowerCase();
+
+let matches = 0;
+
+for(
+let i=0;
+i<Math.min(a.length,b.length);
+i++
+){
+
+if(a[i]===b[i]){
+matches++;
+}
+
+}
+
+return Math.round(
+(matches/Math.max(a.length,b.length))*100
+);
+
+}
+
+// ======================
+// LEVEL
+// ======================
+
+function getLevel(acc){
+
+if(acc>=90) return "Master";
+if(acc>=75) return "Expert";
+if(acc>=60) return "Intermediate";
+if(acc>=40) return "Beginner";
+
+return "Starter";
+
+}
+
+// ======================
+// DASHBOARD
+// ======================
+
+function updateDashboard(){
+
+let accuracy = attempts === 0
+? 0
+: Math.round((correct/attempts)*100);
+
+if(attemptsEl){
+attemptsEl.innerHTML = attempts;
+}
+
+if(correctEl){
+correctEl.innerHTML = correct;
+}
+
+if(accuracyEl){
+accuracyEl.innerHTML =
+accuracy + "%";
+}
+
+if(levelEl){
+levelEl.innerHTML =
+getLevel(accuracy);
+}
+
+if(progressBar){
+progressBar.style.width =
+accuracy + "%";
+}
+
+}
+
+// ======================
+// NEXT WORD
+// ======================
+
+if(nextWordBtn){
+
+nextWordBtn.addEventListener(
+"click",
+()=>{
+
+currentWord =
+words[Math.floor(
+Math.random()*words.length
+)];
 
 expectedWord.innerHTML =
 currentWord;
 
-// =========================
-// RANDOM KURAL
-// =========================
+}
+);
 
-let currentKural =
-kurals[Math.floor(Math.random() * kurals.length)];
+}
+
+// ======================
+// NEXT KURAL
+// ======================
+
+if(nextKuralBtn){
+
+nextKuralBtn.addEventListener(
+"click",
+()=>{
+
+currentKural =
+kurals[Math.floor(
+Math.random()*kurals.length
+)];
 
 displayKural();
 
-// =========================
-// FUNCTIONS
-// =========================
-
-function displayKural(){
-
-    kuralNumber.innerHTML =
-    "Thirukkural #" + currentKural.number;
-
-    kuralText.innerHTML =
-    currentKural.text;
+if(kuralResult){
+kuralResult.innerHTML = "";
 }
 
-function similarity(a,b){
+}
+);
 
-    a = a.trim().toLowerCase();
-    b = b.trim().toLowerCase();
-
-    let matches = 0;
-
-    for(
-        let i=0;
-        i<Math.min(a.length,b.length);
-        i++
-    ){
-
-        if(a[i] === b[i]){
-            matches++;
-        }
-    }
-
-    return Math.round(
-        (matches /
-        Math.max(a.length,b.length))
-        * 100
-    );
 }
 
-function getLevel(acc){
-
-    if(acc >= 90) return "Master";
-    if(acc >= 75) return "Expert";
-    if(acc >= 60) return "Intermediate";
-    if(acc >= 40) return "Beginner";
-
-    return "Starter";
-}
-
-function updateDashboard(){
-
-    let accuracy = attempts === 0
-    ? 0
-    : Math.round((correct / attempts) * 100);
-
-    attemptsEl.innerHTML =
-    attempts;
-
-    correctEl.innerHTML =
-    correct;
-
-    accuracyEl.innerHTML =
-    accuracy + "%";
-
-    levelEl.innerHTML =
-    getLevel(accuracy);
-
-    progressBar.style.width =
-    accuracy + "%";
-}
-
-// =========================
-// NEXT WORD
-// =========================
-
-nextWordBtn.addEventListener("click",()=>{
-
-    currentWord =
-    words[Math.floor(
-        Math.random() * words.length
-    )];
-
-    expectedWord.innerHTML =
-    currentWord;
-
-});
-
-// =========================
-// NEXT KURAL
-// =========================
-
-nextKuralBtn.addEventListener("click",()=>{
-
-    currentKural =
-    kurals[Math.floor(
-        Math.random() * kurals.length
-    )];
-
-    displayKural();
-
-    kuralResult.innerHTML = "";
-
-});
-
-// =========================
+// ======================
 // READ KURAL
-// =========================
+// ======================
 
-readKuralBtn.addEventListener("click",()=>{
+if(readKuralBtn){
 
-    const speech =
-    new SpeechSynthesisUtterance(
-        currentKural.text
-    );
+readKuralBtn.addEventListener(
+"click",
+()=>{
 
-    speech.lang = "ta-IN";
+const speech =
+new SpeechSynthesisUtterance(
+currentKural.text
+);
 
-    speechSynthesis.cancel();
-    speechSynthesis.speak(speech);
+speech.lang = "ta-IN";
+speech.rate = 0.9;
 
-});
+speechSynthesis.cancel();
+speechSynthesis.speak(speech);
 
-// =========================
-// SPEECH RECOGNITION
-// =========================
+}
+);
 
-recordBtn.addEventListener("click",()=>{
+}
 
-    const SpeechRecognition =
-    window.SpeechRecognition ||
-    window.webkitSpeechRecognition;
+// ======================
+// RECORD
+// ======================
 
-    if(!SpeechRecognition){
+if(recordBtn){
 
-        result.innerHTML =
-        "Speech Recognition not supported.";
+recordBtn.addEventListener(
+"click",
+()=>{
 
-        return;
-    }
+const SpeechRecognition =
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
 
-    const recognition =
-    new SpeechRecognition();
+if(!SpeechRecognition){
 
-    recognition.lang = "ta-IN";
-    recognition.interimResults = false;
+result.innerHTML =
+"Speech Recognition not supported.";
 
-    recordBtn.classList.add("recording");
+return;
+}
 
-    result.innerHTML =
-    "🎤 Listening...";
+const recognition =
+new SpeechRecognition();
 
-    recognition.start();
+recognition.lang = "ta-IN";
 
-    recognition.onresult =
-    function(event){
+recordBtn.classList.add(
+"recording"
+);
 
-        recordBtn.classList.remove(
-            "recording"
-        );
+result.innerHTML =
+"🎤 Listening...";
 
-        let text =
-        event.results[0][0].transcript;
+recognition.start();
 
-        let scoreVal =
-        similarity(
-            text,
-            currentWord
-        );
+recognition.onresult =
+function(event){
 
-        let confidence =
-        Math.round(
-            (
-                event.results[0][0]
-                .confidence || 0.8
-            ) * 100
-        );
+recordBtn.classList.remove(
+"recording"
+);
 
-        let accent =
-        Math.round(
-            scoreVal * 0.7 +
-            confidence * 0.3
-        );
+let spoken =
+event.results[0][0].transcript;
 
-        let fluency =
-        Math.round(
-            scoreVal * 0.8 +
-            confidence * 0.2
-        );
+let pronunciation =
+similarity(
+spoken,
+currentWord
+);
 
-        score.innerHTML =
-        scoreVal + "%";
+let confidence =
+Math.round(
+(event.results[0][0].confidence || 0.8)
+*100
+);
 
-        accentScoreEl.innerHTML =
-        accent + "%";
+let accent =
+Math.round(
+(pronunciation*0.7)+
+(confidence*0.3)
+);
 
-        fluencyScoreEl.innerHTML =
-        fluency + "%";
+let fluency =
+Math.round(
+(pronunciation*0.8)+
+(confidence*0.2)
+);
 
-        result.innerHTML =
-        "<b>You Said:</b><br>" +
-        text;
+score.innerHTML =
+pronunciation + "%";
 
-        if(scoreVal >= 85){
+accentScore.innerHTML =
+accent + "%";
 
-            feedback.innerHTML =
-            "🌟 Excellent Pronunciation";
+fluencyScore.innerHTML =
+fluency + "%";
 
-            correct++;
+result.innerHTML =
+"<b>You Said:</b><br>" +
+spoken;
 
-        }
-        else if(scoreVal >= 65){
+if(pronunciation >= 85){
 
-            feedback.innerHTML =
-            "👍 Good Attempt";
+feedback.innerHTML =
+"🌟 Excellent Pronunciation";
 
-        }
-        else{
+correct++;
 
-            feedback.innerHTML =
-            "📚 Needs More Practice";
+}
+else if(pronunciation >= 65){
 
-        }
+feedback.innerHTML =
+"👍 Good Attempt";
 
-        attempts++;
+}
+else{
 
-        updateDashboard();
+feedback.innerHTML =
+"📚 Needs More Practice";
 
-        currentWord =
-        words[Math.floor(
-            Math.random()*words.length
-        )];
+}
 
-        expectedWord.innerHTML =
-        currentWord;
-    };
+attempts++;
 
-    recognition.onerror =
-    function(event){
+updateDashboard();
 
-        recordBtn.classList.remove(
-            "recording"
-        );
+currentWord =
+words[Math.floor(
+Math.random()*words.length
+)];
 
-        result.innerHTML =
-        "Error: " + event.error;
-    };
+expectedWord.innerHTML =
+currentWord;
 
-});
+};
 
-// =========================
-// INITIALIZE
-// =========================
+recognition.onerror =
+function(){
+
+recordBtn.classList.remove(
+"recording"
+);
+
+result.innerHTML =
+"Speech Recognition Error";
+
+};
+
+}
+);
+
+}
+
+// ======================
+// START
+// ======================
 
 updateDashboard();
