@@ -280,18 +280,12 @@ if(readKuralBtn){
     "click",
     ()=>{
 
-        alert("Read Button Working");
-
-    });
-
-}
-
         const speech =
         new SpeechSynthesisUtterance(
             currentKural.text
         );
 
-        speech.lang = "en-US";
+        speech.lang = "ta-IN";
         speech.rate = 0.8;
 
         speechSynthesis.cancel();
@@ -333,7 +327,7 @@ return;
 const recognition =
 new SpeechRecognition();
 
-recognition.lang = "en-US";
+recognition.lang = "ta-IN";
 
 recordBtn.classList.add(
 "recording"
