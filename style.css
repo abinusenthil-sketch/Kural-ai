@@ -12,75 +12,105 @@ padding:20px;
 }
 
 .container{
-max-width:900px;
+max-width:850px;
 margin:auto;
 }
 
 .hero{
 text-align:center;
 color:white;
-margin-bottom:25px;
+margin-bottom:30px;
+}
+
+.version-badge{
+display:inline-block;
+background:white;
+color:#0077cc;
+padding:10px 22px;
+border-radius:30px;
+font-weight:600;
+margin-bottom:20px;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
 }
 
 .hero h1{
-font-size:3rem;
+font-size:3.5rem;
 margin-bottom:10px;
 }
 
 .hero h2{
+font-size:2rem;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:1.15rem;
+line-height:1.5;
 margin-bottom:10px;
 }
 
 .card{
-background:white;
+background:#f8fbff;
 padding:25px;
 margin-bottom:20px;
-border-radius:20px;
-box-shadow:0 8px 25px rgba(0,0,0,0.15);
+border-radius:25px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 
 .card h3{
 color:#0077cc;
-margin-bottom:15px;
+margin-bottom:20px;
+font-size:1.6rem;
 }
 
 .expected{
-font-size:34px;
+font-size:56px;
 font-weight:bold;
-margin-bottom:15px;
+color:#333;
+margin-bottom:20px;
 }
 
 button{
+width:100%;
 background:#0077cc;
 color:white;
 border:none;
-padding:14px 28px;
-font-size:18px;
-border-radius:12px;
+padding:18px;
+font-size:1.2rem;
+border-radius:15px;
 cursor:pointer;
-width:100%;
-max-width:350px;
+transition:.3s;
 }
 
 button:hover{
-opacity:0.9;
+background:#0060a8;
+}
+
+.analysis-text{
+text-align:center;
+margin-bottom:15px;
+font-weight:500;
 }
 
 .score-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+grid-template-columns:repeat(3,1fr);
 gap:15px;
 }
 
 .score-card{
-background:#f4f8ff;
-padding:15px;
-border-radius:12px;
+background:#f2f5ff;
+padding:20px;
+border-radius:15px;
 text-align:center;
 }
 
+.score-card h4{
+margin-bottom:10px;
+}
+
 .score-card p{
-font-size:28px;
+font-size:2rem;
 font-weight:bold;
 color:#0077cc;
 }
@@ -89,9 +119,9 @@ color:#0077cc;
 width:100%;
 height:24px;
 background:#ddd;
-border-radius:20px;
+border-radius:30px;
 overflow:hidden;
-margin-top:15px;
+margin-top:20px;
 }
 
 #progressBar{
@@ -102,18 +132,31 @@ transition:.5s;
 }
 
 .team-member{
-background:#f4f8ff;
-padding:15px;
-border-radius:12px;
-margin-bottom:10px;
+background:#f2f5ff;
+padding:20px;
+border-radius:15px;
+margin-bottom:15px;
 text-align:center;
+}
+
+.team-member h4{
+color:#0077cc;
+margin-bottom:5px;
+}
+
+#result,
+#feedback,
+#kuralResult{
+margin-top:15px;
+font-size:18px;
 }
 
 footer{
 text-align:center;
 color:white;
+padding:25px;
 font-size:18px;
-padding:20px;
+line-height:1.7;
 }
 
 .recording{
@@ -136,21 +179,26 @@ transform:scale(1);
 
 }
 
-#result,
-#feedback,
-#kuralResult{
-margin-top:15px;
-font-size:18px;
-}
-
 @media(max-width:768px){
 
 .hero h1{
-font-size:2rem;
+font-size:2.8rem;
+}
+
+.hero h2{
+font-size:1.5rem;
+}
+
+.hero p{
+font-size:1rem;
 }
 
 .expected{
-font-size:26px;
+font-size:42px;
+}
+
+.score-grid{
+grid-template-columns:1fr;
 }
 
 }
