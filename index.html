@@ -13,14 +13,14 @@
 
     <div class="container">
 
-        <!-- Hero Section -->
+        <!-- HERO SECTION -->
 
         <div class="hero">
 
             <h1>🎤 Kural AI</h1>
 
             <p class="version-badge">
-                Version 1.0 • AI Speech Learning Platform
+                Version 2.0 • AI Speech Learning Platform
             </p>
 
             <h2>AI-Powered Tamil Speech & Accent Mentor</h2>
@@ -31,12 +31,12 @@
 
             <p class="desc">
                 Improve your Tamil pronunciation using speech recognition,
-                AI feedback and performance tracking.
+                AI feedback, Thirukkural practice, and performance tracking.
             </p>
 
         </div>
 
-        <!-- Practice Section -->
+        <!-- PRACTICE WORD SECTION -->
 
         <div class="card">
 
@@ -46,37 +46,52 @@
                 <span id="expectedWord"></span>
             </p>
 
-            <button id="recordBtn">
-                🎤 Start Recording
-            </button>
+            <div class="button-group">
+
+                <button id="recordBtn">
+                    🎤 Start Recording
+                </button>
+
+                <button id="nextWordBtn">
+                    🔄 Next Word
+                </button>
+
+            </div>
 
             <p id="result"></p>
 
         </div>
 
-        <!-- Thirukkural Challenge -->
+        <!-- THIRUKKURAL SECTION -->
 
         <div class="card">
 
             <h3>📜 Thirukkural Challenge</h3>
 
-            <p class="expected">
-                அகர முதல எழுத்தெல்லாம் ஆதி
-                <br><br>
-                பகவன் முதற்றே உலகு
+            <p id="kuralNumber" class="kural-number">
+                Thirukkural
             </p>
 
-            <button>
-                🎤 Read Thirukkural
-            </button>
-
-            <p style="margin-top:15px;font-weight:600;">
-                Practice classical Tamil pronunciation through Thirukkural.
+            <p id="kuralText" class="expected">
             </p>
+
+            <div class="button-group">
+
+                <button id="readKuralBtn">
+                    🔊 Read Thirukkural
+                </button>
+
+                <button id="nextKuralBtn">
+                    📜 Next Thirukkural
+                </button>
+
+            </div>
+
+            <div id="kuralResult"></div>
 
         </div>
 
-        <!-- AI Analysis -->
+        <!-- AI ANALYSIS -->
 
         <div class="card">
 
@@ -107,19 +122,35 @@
 
         </div>
 
-        <!-- Dashboard -->
+        <!-- PERFORMANCE DASHBOARD -->
 
         <div class="card">
 
             <h3>📊 Performance Dashboard</h3>
 
-            <p id="attempts">Total Attempts: 0</p>
+            <div class="dashboard-grid">
 
-            <p id="correct">Correct Attempts: 0</p>
+                <div class="dashboard-item">
+                    <h4>Attempts</h4>
+                    <p id="attempts">0</p>
+                </div>
 
-            <p id="accuracy">Accuracy: 0%</p>
+                <div class="dashboard-item">
+                    <h4>Correct</h4>
+                    <p id="correct">0</p>
+                </div>
 
-            <p id="level">Level: Beginner</p>
+                <div class="dashboard-item">
+                    <h4>Accuracy</h4>
+                    <p id="accuracy">0%</p>
+                </div>
+
+                <div class="dashboard-item">
+                    <h4>Level</h4>
+                    <p id="level">Starter</p>
+                </div>
+
+            </div>
 
             <div class="progress-container">
                 <div id="progressBar"></div>
@@ -127,7 +158,7 @@
 
         </div>
 
-        <!-- Team Section -->
+        <!-- TEAM SECTION -->
 
         <div class="card">
 
@@ -154,7 +185,7 @@
 
         </div>
 
-        <!-- Applications -->
+        <!-- APPLICATIONS -->
 
         <div class="card">
 
@@ -181,15 +212,17 @@
 
         </div>
 
-        <!-- GitHub Button -->
+        <!-- GITHUB -->
 
         <a href="https://github.com/abinusenthil-sketch/Kural-ai"
-           target="_blank"
-           class="github-btn">
+            target="_blank"
+            class="github-btn">
+
             🔗 View Source Code
+
         </a>
 
-        <!-- Footer -->
+        <!-- FOOTER -->
 
         <footer>
 
