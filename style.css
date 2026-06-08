@@ -8,18 +8,20 @@ body{
     font-family:'Segoe UI',sans-serif;
     background:linear-gradient(135deg,#4facfe,#00f2fe);
     min-height:100vh;
-    padding:30px;
+    padding:30px 15px;
 }
 
 .container{
-    max-width:900px;
+    max-width:1000px;
     margin:auto;
 }
+
+/* HERO */
 
 .hero{
     text-align:center;
     color:white;
-    margin-bottom:25px;
+    margin-bottom:30px;
 }
 
 .hero h1{
@@ -32,19 +34,39 @@ body{
     font-weight:500;
 }
 
-.desc{
-    font-size:1rem;
+.tagline{
+    font-size:1.1rem;
+    margin-bottom:12px;
     opacity:0.95;
 }
 
+.desc{
+    max-width:700px;
+    margin:auto;
+    line-height:1.7;
+}
+
+.version-badge{
+    display:inline-block;
+    background:white;
+    color:#0077cc;
+    padding:8px 18px;
+    border-radius:25px;
+    margin:15px 0;
+    font-weight:600;
+}
+
+/* CARD */
+
 .card{
-    background:rgba(255,255,255,0.95);
+    background:rgba(255,255,255,0.96);
     backdrop-filter:blur(10px);
-    padding:25px;
-    margin-bottom:20px;
     border-radius:20px;
+    padding:25px;
+    margin-bottom:22px;
     box-shadow:0 8px 25px rgba(0,0,0,0.15);
     transition:0.3s;
+    text-align:center;
 }
 
 .card:hover{
@@ -53,30 +75,50 @@ body{
 
 .card h3{
     color:#0077cc;
-    margin-bottom:15px;
+    margin-bottom:20px;
 }
 
+/* WORDS & KURAL */
+
 .expected{
-    font-size:28px;
-    font-weight:bold;
+    font-size:1.5rem;
+    font-weight:700;
     color:#333;
-    margin-bottom:15px;
+    margin-bottom:20px;
+    line-height:1.8;
+    word-break:break-word;
+}
+
+.kural-number{
+    color:#0077cc;
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+/* BUTTONS */
+
+.button-group{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
 }
 
 button{
     background:#0077cc;
     color:white;
     border:none;
-    padding:14px 28px;
-    font-size:18px;
+    padding:14px 24px;
     border-radius:12px;
+    font-size:16px;
     cursor:pointer;
     transition:0.3s;
+    font-weight:600;
 }
 
 button:hover{
     background:#005fa3;
-    transform:scale(1.05);
+    transform:translateY(-2px);
 }
 
 .recording{
@@ -84,12 +126,13 @@ button:hover{
 }
 
 @keyframes pulse{
+
     0%{
         transform:scale(1);
     }
 
     50%{
-        transform:scale(1.1);
+        transform:scale(1.08);
     }
 
     100%{
@@ -97,108 +140,112 @@ button:hover{
     }
 }
 
-#result{
-    margin-top:15px;
-    font-size:18px;
+/* RESULTS */
+
+#result,
+#kuralResult{
+    margin-top:18px;
+    line-height:1.7;
     font-weight:600;
 }
 
+#feedback{
+    margin-top:15px;
+    font-weight:700;
+    color:#0077cc;
+}
+
+/* AI ANALYSIS */
+
 .score-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
     gap:15px;
-    margin-bottom:15px;
+    margin-bottom:20px;
 }
 
 .score-card{
     background:#f4f8ff;
-    padding:15px;
-    border-radius:12px;
-    text-align:center;
+    padding:18px;
+    border-radius:15px;
 }
 
 .score-card h4{
+    margin-bottom:10px;
+    color:#444;
+}
+
+.score-card p{
+    font-size:30px;
+    color:#0077cc;
+    font-weight:700;
+}
+
+/* DASHBOARD */
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.dashboard-item{
+    background:#f4f8ff;
+    padding:18px;
+    border-radius:15px;
+}
+
+.dashboard-item h4{
     color:#444;
     margin-bottom:8px;
 }
 
-.score-card p{
-    font-size:22px;
-    font-weight:bold;
+.dashboard-item p{
     color:#0077cc;
-}
-
-#feedback{
-    text-align:center;
-    font-size:16px;
-    font-weight:600;
+    font-weight:700;
+    font-size:22px;
 }
 
 .progress-container{
     width:100%;
-    height:22px;
+    height:24px;
     background:#ddd;
     border-radius:30px;
     overflow:hidden;
-    margin-top:15px;
 }
 
 #progressBar{
     width:0%;
     height:100%;
-    background:linear-gradient(90deg,#00c853,#64dd17);
+    background:linear-gradient(
+        90deg,
+        #00c853,
+        #64dd17
+    );
     transition:0.5s;
 }
 
+/* TEAM */
+
 .team-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:15px;
 }
 
 .member{
     background:#f4f8ff;
-    padding:15px;
-    border-radius:12px;
-    text-align:center;
+    padding:18px;
+    border-radius:15px;
 }
 
 .member h4{
     color:#0077cc;
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
-footer{
-    text-align:center;
-    color:white;
-    margin-top:25px;
-}
-
-footer p{
-    margin-top:6px;
-}
-
-@media(max-width:768px){
-
-    .hero h1{
-        font-size:2.2rem;
-    }
-
-    button{
-        width:100%;
-    }
-
-}
-.version-badge{
-    display:inline-block;
-    background:white;
-    color:#0077cc;
-    padding:8px 15px;
-    border-radius:25px;
-    margin-top:10px;
-    margin-bottom:15px;
-    font-weight:600;
-}
+/* GITHUB */
 
 .github-btn{
     display:block;
@@ -206,9 +253,9 @@ footer p{
     text-decoration:none;
     background:#24292e;
     color:white;
-    padding:14px;
+    padding:15px;
     border-radius:12px;
-    margin-bottom:20px;
+    margin-bottom:25px;
     font-weight:bold;
     transition:0.3s;
 }
@@ -217,3 +264,35 @@ footer p{
     transform:translateY(-3px);
 }
 
+/* FOOTER */
+
+footer{
+    text-align:center;
+    color:white;
+    padding-bottom:20px;
+}
+
+footer p{
+    margin-top:8px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:2.2rem;
+    }
+
+    .button-group{
+        flex-direction:column;
+    }
+
+    button{
+        width:100%;
+    }
+
+    .expected{
+        font-size:1.2rem;
+    }
+}
