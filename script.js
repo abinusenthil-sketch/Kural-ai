@@ -280,6 +280,12 @@ if(readKuralBtn){
     "click",
     ()=>{
 
+        alert("Read Button Working");
+
+    });
+
+}
+
         const speech =
         new SpeechSynthesisUtterance(
             currentKural.text
