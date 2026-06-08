@@ -333,7 +333,7 @@ return;
 const recognition =
 new SpeechRecognition();
 
-recognition.lang = "ta-IN";
+recognition.lang = "en-US";
 
 recordBtn.classList.add(
 "recording"
