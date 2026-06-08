@@ -21,6 +21,7 @@ const progressBar = document.getElementById("progressBar");
 const kuralNumber = document.getElementById("kuralNumber");
 const kuralText = document.getElementById("kuralText");
 const readKuralBtn = document.getElementById("readKuralBtn");
+const practiceKuralBtn = document.getElementById("practiceKuralBtn");
 const nextKuralBtn = document.getElementById("nextKuralBtn");
 const kuralResult = document.getElementById("kuralResult");
 
