@@ -276,24 +276,29 @@ kuralResult.innerHTML = "";
 
 if(readKuralBtn){
 
-readKuralBtn.addEventListener(
-"click",
-()=>{
+    readKuralBtn.addEventListener(
+    "click",
+    ()=>{
 
-const speech =
-new SpeechSynthesisUtterance(
-currentKural.text
-);
+        const speech =
+        new SpeechSynthesisUtterance(
+            currentKural.text
+        );
 
-speech.lang = "en-US";
-speech.rate = 0.8;
+        speech.lang = "ta-IN";
+        speech.rate = 0.8;
 
-speechSynthesis.cancel();
-  setTimeout(()=>{
-speechSynthesis.speak(speech);
+        speechSynthesis.cancel();
 
-},100);
-));
+        setTimeout(() => {
+
+            speechSynthesis.speak(
+                speech
+            );
+
+        }, 100);
+
+    });
 
 }
 
