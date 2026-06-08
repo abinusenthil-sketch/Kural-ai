@@ -284,14 +284,15 @@ new SpeechSynthesisUtterance(
 currentKural.text
 );
 
-speech.lang = "ta-IN";
-speech.rate = 0.9;
+speech.lang = "en-US";
+speech.rate = 0.8;
 
 speechSynthesis.cancel();
+  setTimeout(()=>{
 speechSynthesis.speak(speech);
 
-}
-);
+},100);
+));
 
 }
 
