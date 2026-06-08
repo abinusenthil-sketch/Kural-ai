@@ -138,3 +138,56 @@ recordBtn.addEventListener("click", function () {
     };
 
 });
+// Thirukkural Speech Recognition
+
+const kuralBtn = document.getElementById("kuralBtn");
+const kuralResult = document.getElementById("kuralResult");
+
+if (kuralBtn) {
+
+    kuralBtn.addEventListener("click", function () {
+
+        const SpeechRecognition =
+            window.SpeechRecognition ||
+            window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+            kuralResult.innerHTML =
+                "❌ Speech Recognition not supported";
+            return;
+        }
+
+        const recognition = new SpeechRecognition();
+
+        recognition.lang = "ta-IN";
+
+        kuralBtn.classList.add("recording");
+
+        kuralResult.innerHTML =
+            "🎤 Listening to Thirukkural...";
+
+        recognition.start();
+
+        recognition.onresult = function (event) {
+
+            kuralBtn.classList.remove("recording");
+
+            const text =
+                event.results[0][0].transcript;
+
+            kuralResult.innerHTML =
+                "🗣 You said: " + text;
+
+        };
+
+        recognition.onerror = function (event) {
+
+            kuralBtn.classList.remove("recording");
+
+            kuralResult.innerHTML =
+                "❌ Error: " + event.error;
+        };
+
+    });
+
+}
