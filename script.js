@@ -1,170 +1,147 @@
+// ===============================
+// SPEECH PRACTICE SECTION
+// ===============================
+
 const recordBtn = document.getElementById("recordBtn");
 const result = document.getElementById("result");
 const score = document.getElementById("score");
 const expectedWord = document.getElementById("expectedWord");
+const feedback = document.getElementById("feedback");
+const accentScoreEl = document.getElementById("accentScore");
+const fluencyScoreEl = document.getElementById("fluencyScore");
+const attemptsEl = document.getElementById("attempts");
+const correctEl = document.getElementById("correct");
+const accuracyEl = document.getElementById("accuracy");
+const progressBar = document.getElementById("progressBar");
+const levelEl = document.getElementById("level");
 
 let attempts = 0;
 let correct = 0;
 
 const words = [
-    "வணக்கம்",
-    "நன்றி",
-    "அம்மா",
-    "அப்பா",
-    "தமிழ்",
-    "கல்வி",
-    "மாணவர்",
-    "நூலகம்",
-    "பள்ளி",
-    "விழா",
-    "தமிழ்நாடு",
-    "சென்னை",
-    "அன்பு",
-    "நட்பு",
-    "உழைப்பு"
+    "வணக்கம்", "நன்றி", "அம்மா", "அப்பா", "தமிழ்",
+    "கல்வி", "மாணவர்", "நூலகம்", "பள்ளி", "விழா",
+    "தமிழ்நாடு", "சென்னை", "அன்பு", "நட்பு", "உழைப்பு"
 ];
 
-let currentWord =
-words[Math.floor(Math.random() * words.length)];
+let currentWord = words[Math.floor(Math.random() * words.length)];
 
-expectedWord.innerHTML = currentWord;
+if (expectedWord) {
+    expectedWord.innerHTML = currentWord;
+}
 
-recordBtn.addEventListener("click", function () {
+if (recordBtn) {
+    recordBtn.addEventListener("click", function () {
 
-    const SpeechRecognition =
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
+        const SpeechRecognition =
+            window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    if (!SpeechRecognition) {
-        result.innerHTML = "❌ Speech Recognition not supported";
-        return;
-    }
-
-    const recognition = new SpeechRecognition();
-
-    recognition.lang = "ta-IN";
-
-    recordBtn.classList.add("recording");
-
-    result.innerHTML = "🎤 Listening...";
-
-    recognition.start();
-
-    recognition.onresult = function (event) {
-
-        recordBtn.classList.remove("recording");
-
-        attempts++;
-
-        const text =
-        event.results[0][0].transcript.toLowerCase();
-
-        result.innerHTML =
-        "🗣 You said: " + text;
-
-        let pronunciationScore = 60;
-        let accentScore = 65;
-        let fluencyScore = 70;
-
-        if (text.includes(currentWord.toLowerCase())) {
-
-            correct++;
-
-            pronunciationScore = 100;
-            accentScore = 95;
-            fluencyScore = 92;
-
-            document.getElementById("feedback").innerHTML =
-            "✅ Excellent pronunciation! Great job!";
-        }
-        else {
-
-            pronunciationScore = 60;
-            accentScore = 70;
-            fluencyScore = 68;
-
-            document.getElementById("feedback").innerHTML =
-            "⚠️ Try speaking slowly and clearly.";
+        if (!SpeechRecognition) {
+            result.innerHTML = "❌ Speech Recognition not supported";
+            return;
         }
 
-        document.getElementById("score").innerHTML =
-        pronunciationScore + "%";
+        const recognition = new SpeechRecognition();
+        recognition.lang = "ta-IN";
 
-        document.getElementById("accentScore").innerHTML =
-        accentScore + "%";
+        recordBtn.classList.add("recording");
+        result.innerHTML = "🎤 Listening...";
+        recognition.start();
 
-        document.getElementById("fluencyScore").innerHTML =
-        fluencyScore + "%";
+        recognition.onresult = function (event) {
 
-        document.getElementById("attempts").innerHTML =
-        "Total Attempts: " + attempts;
+            recordBtn.classList.remove("recording");
 
-        document.getElementById("correct").innerHTML =
-        "Correct Attempts: " + correct;
+            attempts++;
 
-        let accuracy =
-        ((correct / attempts) * 100).toFixed(0);
+            const text = event.results[0][0].transcript.toLowerCase();
+            result.innerHTML = "🗣 You said: " + text;
 
-        document.getElementById("accuracy").innerHTML =
-        "Accuracy: " + accuracy + "%";
+            let pronunciationScore = 60;
+            let accentScore = 65;
+            let fluencyScore = 70;
 
-        document.getElementById("progressBar").style.width =
-        accuracy + "%";
+            if (text.includes(currentWord.toLowerCase())) {
 
-        let level = "Beginner";
+                correct++;
 
-        if (accuracy >= 80) {
-            level = "🏆 Expert";
-        }
-        else if (accuracy >= 50) {
-            level = "⭐ Intermediate";
-        }
+                pronunciationScore = 100;
+                accentScore = 95;
+                fluencyScore = 92;
 
-        document.getElementById("level").innerHTML =
-        "Level: " + level;
+                if (feedback) {
+                    feedback.innerHTML = "✅ Excellent pronunciation! Great job!";
+                }
 
-        currentWord =
-        words[Math.floor(Math.random() * words.length)];
+            } else {
 
-        expectedWord.innerHTML = currentWord;
-    };
+                pronunciationScore = 60;
+                accentScore = 70;
+                fluencyScore = 68;
 
-    recognition.onerror = function (event) {
+                if (feedback) {
+                    feedback.innerHTML = "⚠️ Try speaking slowly and clearly.";
+                }
+            }
 
-        recordBtn.classList.remove("recording");
+            if (score) score.innerHTML = pronunciationScore + "%";
+            if (accentScoreEl) accentScoreEl.innerHTML = accentScore + "%";
+            if (fluencyScoreEl) fluencyScoreEl.innerHTML = fluencyScore + "%";
 
-        result.innerHTML =
-        "❌ Error: " + event.error;
-    };
+            if (attemptsEl) attemptsEl.innerHTML = "Total Attempts: " + attempts;
+            if (correctEl) correctEl.innerHTML = "Correct Attempts: " + correct;
 
-});
-// Thirukkural Speech Recognition
+            let accuracy = ((correct / attempts) * 100).toFixed(0);
+
+            if (accuracyEl) accuracyEl.innerHTML = "Accuracy: " + accuracy + "%";
+            if (progressBar) progressBar.style.width = accuracy + "%";
+
+            let level = "Beginner";
+            if (accuracy >= 80) level = "🏆 Expert";
+            else if (accuracy >= 50) level = "⭐ Intermediate";
+
+            if (levelEl) levelEl.innerHTML = "Level: " + level;
+
+            currentWord = words[Math.floor(Math.random() * words.length)];
+            if (expectedWord) expectedWord.innerHTML = currentWord;
+        };
+
+        recognition.onerror = function (event) {
+            recordBtn.classList.remove("recording");
+            result.innerHTML = "❌ Error: " + event.error;
+        };
+    });
+}
+
+
+// ===============================
+// THIRUKKURAL SPEECH SECTION
+// ===============================
 
 const kuralBtn = document.getElementById("kuralBtn");
 const kuralResult = document.getElementById("kuralResult");
 
 if (kuralBtn) {
-
     kuralBtn.addEventListener("click", function () {
 
         const SpeechRecognition =
-            window.SpeechRecognition ||
-            window.webkitSpeechRecognition;
+            window.SpeechRecognition || window.webkitSpeechRecognition;
 
         if (!SpeechRecognition) {
-            kuralResult.innerHTML =
-                "❌ Speech Recognition not supported";
+            if (kuralResult) {
+                kuralResult.innerHTML = "❌ Speech Recognition not supported";
+            }
             return;
         }
 
         const recognition = new SpeechRecognition();
-
         recognition.lang = "ta-IN";
 
         kuralBtn.classList.add("recording");
 
-        kuralResult.innerHTML =
-            "🎤 Listening to Thirukkural...";
+        if (kuralResult) {
+            kuralResult.innerHTML = "🎤 Listening to Thirukkural...";
+        }
 
         recognition.start();
 
@@ -172,22 +149,21 @@ if (kuralBtn) {
 
             kuralBtn.classList.remove("recording");
 
-            const text =
-                event.results[0][0].transcript;
+            const text = event.results[0][0].transcript;
 
-            kuralResult.innerHTML =
-                "🗣 You said: " + text;
-
+            if (kuralResult) {
+                kuralResult.innerHTML = "🗣 You said: " + text;
+            }
         };
 
         recognition.onerror = function (event) {
 
             kuralBtn.classList.remove("recording");
 
-            kuralResult.innerHTML =
-                "❌ Error: " + event.error;
+            if (kuralResult) {
+                kuralResult.innerHTML = "❌ Error: " + event.error;
+            }
         };
 
     });
-
 }
