@@ -285,7 +285,7 @@ if(readKuralBtn){
             currentKural.text
         );
 
-        speech.lang = "ta-IN";
+        speech.lang = "en-US";
         speech.rate = 0.8;
 
         speechSynthesis.cancel();
