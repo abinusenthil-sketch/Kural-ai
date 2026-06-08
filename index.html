@@ -5,70 +5,76 @@
     <meta charset="UTF-8">
     <title>Tamil Speech App</title>
 
-    <style>
-        body {
-            font-family: Arial;
-            padding: 20px;
-        }
-
-        button {
-            padding: 10px 15px;
-            margin: 10px;
-            cursor: pointer;
-        }
-
-        .recording {
-            background-color: red;
-            color: white;
-        }
-
-        #progressBar {
-            width: 0%;
-            height: 20px;
-            background-color: green;
-            transition: 0.3s;
-        }
-
-        .box {
-            margin: 10px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h2>🎤 Tamil Speech Practice</h2>
+<div class="container">
 
-    <h3>Expected Word: <span id="expectedWord"></span></h3>
+    <div class="hero">
+        <h1>🎤 Tamil Speech Trainer</h1>
+        <h2>Practice & Improve Pronunciation</h2>
+        <div class="version-badge">Practice Session 3</div>
+    </div>
 
-    <button id="recordBtn">🎤 Speak</button>
-    <div id="result" class="box"></div>
+    <!-- WORD PRACTICE -->
+    <div class="card">
+        <h3>Speak This Word</h3>
+        <div class="expected">
+            <span id="expectedWord"></span>
+        </div>
 
-    <h3>Scores</h3>
-    <div id="score"></div>
-    <div id="accentScore"></div>
-    <div id="fluencyScore"></div>
+        <button id="recordBtn">🎤 Speak</button>
 
-    <div id="feedback" class="box"></div>
+        <div id="result"></div>
 
-    <h3>Progress</h3>
-    <div id="attempts"></div>
-    <div id="correct"></div>
-    <div id="accuracy"></div>
-    <div id="level"></div>
+        <div id="feedback"></div>
+    </div>
 
-    <div id="progressBar"></div>
+    <!-- SCORES -->
+    <div class="card">
+        <h3>AI Score</h3>
 
-    <hr>
+        <div class="score-grid">
+            <div class="score-card">
+                <h4>Pronunciation</h4>
+                <p id="score">0%</p>
+            </div>
 
-    <h2>📖 Thirukkural Practice</h2>
+            <div class="score-card">
+                <h4>Accent</h4>
+                <p id="accentScore">0%</p>
+            </div>
 
-    <button id="kuralBtn">🔊 Read Thirukkural</button>
-    <div id="kuralResult" class="box"></div>
+            <div class="score-card">
+                <h4>Fluency</h4>
+                <p id="fluencyScore">0%</p>
+            </div>
+        </div>
 
-    <!-- 🔥 IMPORTANT: JS FILE LINK -->
-    <script src="script.js"></script>
+        <div id="attempts"></div>
+        <div id="correct"></div>
+        <div id="accuracy"></div>
+        <div id="level"></div>
+
+        <div class="progress-container">
+            <div id="progressBar"></div>
+        </div>
+    </div>
+
+    <!-- THIRUKKURAL -->
+    <div class="card">
+        <h3>Thirukkural Practice</h3>
+
+        <button id="kuralBtn">📖 Read Thirukkural</button>
+
+        <div id="kuralResult"></div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
-
 </html>
