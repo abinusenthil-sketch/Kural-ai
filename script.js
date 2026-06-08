@@ -437,3 +437,90 @@ result.innerHTML =
 // ======================
 
 updateDashboard();
+
+if(practiceKuralBtn){
+
+practiceKuralBtn.addEventListener(
+"click",
+()=>{
+
+const SpeechRecognition =
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
+
+if(!SpeechRecognition){
+
+kuralResult.innerHTML =
+"Speech Recognition not supported.";
+
+return;
+}
+
+const recognition =
+new SpeechRecognition();
+
+recognition.lang = "ta-IN";
+
+kuralResult.innerHTML =
+"🎤 Listening...";
+
+recognition.start();
+
+recognition.onresult =
+function(event){
+
+const spokenText =
+event.results[0][0].transcript;
+
+const scoreVal =
+similarity(
+spokenText,
+currentKural.text
+);
+
+let message = "";
+
+if(scoreVal >= 85){
+
+message =
+"🌟 Excellent Reading";
+
+}
+else if(scoreVal >= 65){
+
+message =
+"👍 Good Reading";
+
+}
+else{
+
+message =
+"📚 Practice Again";
+
+}
+
+kuralResult.innerHTML =
+"<b>Kural:</b><br><br>" +
+currentKural.text +
+"<br><br>" +
+"<b>You Said:</b><br><br>" +
+spokenText +
+"<br><br>" +
+"<b>Score:</b> " +
+scoreVal +
+"%<br><br>" +
+message;
+
+};
+
+recognition.onerror =
+function(){
+
+kuralResult.innerHTML =
+"Speech recognition error.";
+
+};
+
+});
+
+}
